@@ -1,0 +1,34 @@
+root@controlplane:~$ ^[[200~kubectl version --client
+kubectl: command not found
+root@controlplane:~$ 
+root@controlplane:~$ kubectl get nodes
+NAME           STATUS   ROLES           AGE   VERSION
+controlplane   Ready    control-plane   9d    v1.37.1
+node01         Ready    <none>          9d    v1.37.1
+root@controlplane:~$ ~
+~_apt              ~irc               ~pollinate/        ~systemd-resolve/
+~avahi/            ~landscape/        ~postfix/          ~systemd-timesync/
+~backup/           ~lightdm/          ~proxy/            ~tcpdump
+~bin/              ~list              ~pulse             ~tss/
+~colord/           ~lp                ~root/             ~ubuntu/
+~cups-browsed      ~mail/             ~rtkit/            ~usbmux
+~cups-pk-helper    ~man/              ~saned/            ~uucp
+~daemon/           ~messagebus        ~sshd/             ~uuidd/
+~dhcpcd/           ~news              ~sync/             ~whoopsie
+~dnsmasq/          ~nobody            ~sys/              ~www-data
+~fwupd-refresh/    ~nova              ~syslog            
+~games/            ~polkitd/          ~systemd-network/  
+root@controlplane:~$ kubectl version --client
+
+kubectl get nodes
+Client Version: v1.37.1
+Kustomize Version: v5.8.1
+NAME           STATUS   ROLES           AGE   VERSION
+controlplane   Ready    control-plane   9d    v1.37.1
+node01         Ready    <none>          9d    v1.37.1
+root@controlplane:~$ kubectl create deployment web-aula5 --image=nginx:alpine
+
+kubectl get deployments
+deployment.apps/web-aula5 created
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+web-aula5   0/1     0            0           1s
