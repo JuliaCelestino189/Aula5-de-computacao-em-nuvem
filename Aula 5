@@ -1,83 +1,67 @@
-Codigo passo 1 
-
 root@controlplane:~$ ^[[200~kubectl version --client
 kubectl: command not found
 root@controlplane:~$ 
 root@controlplane:~$ kubectl get nodes
 NAME           STATUS   ROLES           AGE   VERSION
-controlplane   Ready    control-plane   9d    v1.37.1
-node01         Ready    <none>          9d    v1.37.1
-root@controlplane:~$ ~
-~_apt              ~irc               ~pollinate/        ~systemd-resolve/
-~avahi/            ~landscape/        ~postfix/          ~systemd-timesync/
-~backup/           ~lightdm/          ~proxy/            ~tcpdump
-~bin/              ~list              ~pulse             ~tss/
-~colord/           ~lp                ~root/             ~ubuntu/
-~cups-browsed      ~mail/             ~rtkit/            ~usbmux
-~cups-pk-helper    ~man/              ~saned/            ~uucp
-~daemon/           ~messagebus        ~sshd/             ~uuidd/
-~dhcpcd/           ~news              ~sync/             ~whoopsie
-~dnsmasq/          ~nobody            ~sys/              ~www-data
-~fwupd-refresh/    ~nova              ~syslog            
-~games/            ~polkitd/          ~systemd-network/  
-root@controlplane:~$ kubectl version --client
+controlplane   Ready    control-plane   16d   v1.37.1
+node01         Ready    <none>          16d   v1.37.1
+root@controlplane:~$ ~kubectl version --client
 
 kubectl get nodes
+~kubectl: command not found
+NAME           STATUS   ROLES           AGE   VERSION
+controlplane   Ready    control-plane   16d   v1.37.1
+node01         Ready    <none>          16d   v1.37.1
+root@controlplane:~$ root@controlplane:~$ 
+root@controlplane:~$: command not found
+root@controlplane:~$ kubectl version --client
 Client Version: v1.37.1
 Kustomize Version: v5.8.1
+root@controlplane:~$ kubectl get nodes
 NAME           STATUS   ROLES           AGE   VERSION
-controlplane   Ready    control-plane   9d    v1.37.1
-node01         Ready    <none>          9d    v1.37.1
+controlplane   Ready    control-plane   16d   v1.37.1
+node01         Ready    <none>          16d   v1.37.1
 root@controlplane:~$ kubectl create deployment web-aula5 --image=nginx:alpine
-
-kubectl get deployments
 deployment.apps/web-aula5 created
+root@controlplane:~$ kubectl get deployments
 NAME        READY   UP-TO-DATE   AVAILABLE   AGE
-web-aula5   0/1     0            0           1s
-
-
-Codigo passo 2 
-
-root@controlplane:~$ kubectl get pods                                    
-
-kubectl get pods -o wide
+web-aula5   1/1     1            1           108s
+root@controlplane:~$ kubectl get pods
 NAME                         READY   STATUS    RESTARTS   AGE
-web-aula5-779c6f9566-5zqz4   1/1     Running   0          24m
-NAME                         READY   STATUS    RESTARTS   AGE   IP              NODE     NOMINATED NODE   READINESS GATES
-web-aula5-779c6f9566-5zqz4   1/1     Running   0          24m   192.168.1.151   node01   <none>           <none>
-root@controlplane:~$ ^C
-
-Codigo passo 3 
-
+web-aula5-779c6f9566-2q542   1/1     Running   0          2m8s
+root@controlplane:~$ 
+kubectl get pods -o wide
+NAME                         READY   STATUS    RESTARTS   AGE     IP             NODE     NOMINATED NODE   READINESS GATES
+web-aula5-779c6f9566-2q542   1/1     Running   0          2m22s   192.168.1.36   node01   <none>           <none>
 root@controlplane:~$ kubectl describe pod $(kubectl get pods -o jsonpath='{.items[0].metadata.name}')
-Name:             web-aula5-779c6f9566-5zqz4
+Name:             web-aula5-779c6f9566-2q542
 Namespace:        default
 Priority:         0
 Service Account:  default
 Node:             node01/172.30.2.2
-Start Time:       Wed, 14 Oct 2026 23:34:47 +0000
+Start Time:       Thu, 22 Oct 2026 00:53:43 +0000
 Labels:           app=web-aula5
                   pod-template-hash=779c6f9566
 Annotations:      <none>
 Status:           Running
-IP:               192.168.1.151
+IP:               192.168.1.36
 IPs:
-  IP:           192.168.1.151
+  IP:           192.168.1.36
 Controlled By:  ReplicaSet/web-aula5-779c6f9566
 Containers:
   nginx:
-    Container ID:   containerd://f824c4d3bbc0e5e0a99d6144a2a7129d79c80d5b896e1faed7378d99844f5a19
+    Container ID:   containerd://b9a4e57469f3e651f49393609b459a86b68cc59dab0c497ad9db50a252391ab1
     Image:          nginx:alpine
-    Image ID:       docker.io/library/nginx@sha256:72aeb3308ef6cb3118242fb16389518923916dfa206e32d1a8377acc328b9870
+    Image ID:       docker.io/library/nginx@sha256:892bb2152464f0c5d8972593a5f5afaf8054552580b699d95f8ff4af08c2d33d
     Port:           <none>
     Host Port:      <none>
     State:          Running
-      Started:      Wed, 14 Oct 2026 23:34:56 +0000
+      Started:      Thu, 22 Oct 2026 00:53:52 +0000
     Ready:          True
     Restart Count:  0
     Environment:    <none>
     Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-9s5px (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-bb88c (ro)
 Conditions:
   Type                        Status
   PodReadyToStartContainers   True 
@@ -86,7 +70,7 @@ Conditions:
   ContainersReady             True 
   PodScheduled                True 
 Volumes:
-  kube-api-access-9s5px:
+  kube-api-access-bb88c:
     Type:                    Projected (a volume that contains injected data from multiple sources)
     TokenExpirationSeconds:  3607
     ConfigMapName:           kube-root-ca.crt
@@ -97,12 +81,54 @@ Node-Selectors:              <none>
 Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
 Events:
-  Type    Reason     Age   From               Message
-  ----    ------     ----  ----               -------
-  Normal  Scheduled  26m   default-scheduler  Successfully assigned default/web-aula5-779c6f9566-5zqz4 to node01
-  Normal  Pulling    26m   kubelet            spec.containers{nginx}: Pulling image "nginx:alpine"
-  Normal  Pulled     26m   kubelet            spec.containers{nginx}: Successfully pulled image "nginx:alpine" in 4.566s (4.566s including waiting). Image size: 28826677 bytes.
-  Normal  Created    26m   kubelet            spec.containers{nginx}: Container created
-  Normal  Started    26m   kubelet            spec.containers{nginx}: Container started
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  2m36s  default-scheduler  Successfully assigned default/web-aula5-779c6f9566-2q542 to node01
+  Normal  Pulling    2m33s  kubelet            spec.containers{nginx}: Pulling image "nginx:alpine"
+  Normal  Pulled     2m27s  kubelet            spec.containers{nginx}: Successfully pulled image "nginx:alpine" in 5.778s (5.778s including waiting). Image size: 28826677 bytes.
+  Normal  Created    2m27s  kubelet            spec.containers{nginx}: Container created
+  Normal  Started    2m27s  kubelet            spec.containers{nginx}: Container started
+root@controlplane:~$ kubectl scale deployment web-aula5 --replicas=3
+deployment.apps/web-aula5 scaled
+root@controlplane:~$ kubectl get pods -o wide
+NAME                         READY   STATUS    RESTARTS   AGE    IP              NODE     NOMINATED NODE   READINESS GATES
+web-aula5-779c6f9566-2q542   1/1     Running   0          3m5s   192.168.1.36    node01   <none>           <none>
+web-aula5-779c6f9566-8vm2t   1/1     Running   0          10s    192.168.1.246   node01   <none>           <none>
+web-aula5-779c6f9566-rjxfx   1/1     Running   0          10s    192.168.1.7     node01   <none>           <none>
+root@controlplane:~$ kubectl get deployment,replicaset,pods
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/web-aula5   3/3     3            3           3m18s
 
+NAME                                   DESIRED   CURRENT   READY   AGE
+replicaset.apps/web-aula5-779c6f9566   3         3         3       3m18s
 
+NAME                             READY   STATUS    RESTARTS   AGE
+pod/web-aula5-779c6f9566-2q542   1/1     Running   0          3m18s
+pod/web-aula5-779c6f9566-8vm2t   1/1     Running   0          23s
+pod/web-aula5-779c6f9566-rjxfx   1/1     Running   0          23s
+root@controlplane:~$ kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+web-aula5-779c6f9566-2q542   1/1     Running   0          3m28s
+web-aula5-779c6f9566-8vm2t   1/1     Running   0          33s
+web-aula5-779c6f9566-rjxfx   1/1     Running   0          33s
+root@controlplane:~$ kubectl delete pod $(kubectl get pods -o jsonpath='{.items[0].metadata.name}')
+pod "web-aula5-779c6f9566-2q542" deleted from default namespace
+root@controlplane:~$ kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+web-aula5-779c6f9566-8vm2t   1/1     Running   0          53s
+web-aula5-779c6f9566-rjxfx   1/1     Running   0          53s
+web-aula5-779c6f9566-t6lkn   1/1     Running   0          12s
+root@controlplane:~$ kubectl expose deployment web-aula5 --port=80 --target-port=80 --name=web-service
+service/web-service exposed
+root@controlplane:~$ kubectl get service web-service
+NAME          TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
+web-service   ClusterIP   10.98.151.5   <none>        80/TCP    12s
+root@controlplane:~$ kubectl run teste --image=curlimages/curl --rm -it --restart=Never -- \
+curl: try 'curl --help' or 'curl --manual' for more information
+All commands and output from this session will be recorded in container logs, including credentials and sensitive information passed through the command prompt.
+If you don't see a command prompt, try pressing enter.
+Session ended, resume using 'kubectl attach teste -c teste -n default -i -t' command
+pod "teste" deleted from default namespace
+pod default/teste terminated (Error)
+root@controlplane:~$   curl http://web-service
+curl: (6) Could not resolve host: web-service
