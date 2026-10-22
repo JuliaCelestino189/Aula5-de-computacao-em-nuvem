@@ -20,7 +20,8 @@ Aprender na prática a criar, gerenciar e escalar aplicações utilizando Kubern
 * kubectl
 * Nginx (Alpine)
 
-#Desafio
+# Desafio
+
 O Escalonamento: O comando kubectl scale ... --replicas=5 funcionou. O Kubernetes criou os Pods que faltavam (4dxvs e 9bzsk) para chegar ao total de 5.
 
 A Exclusão: Você mandou deletar o Pod 4dxvs. O sistema confirmou a exclusão (pod ... deleted).
