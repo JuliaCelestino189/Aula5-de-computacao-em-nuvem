@@ -1,6 +1,3 @@
-# Aula5-de-computacao-em-nuvem
-
-
 # Aula 5 — Kubernetes
 
 ## Objetivo
