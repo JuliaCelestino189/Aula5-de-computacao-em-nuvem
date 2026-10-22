@@ -132,3 +132,23 @@ pod "teste" deleted from default namespace
 pod default/teste terminated (Error)
 root@controlplane:~$   curl http://web-service
 curl: (6) Could not resolve host: web-service
+
+
+Desafio: root@controlplane:~$ kubectl scale deployment web-aula5 --replicas=5
+deployment.apps/web-aula5 scaled
+root@controlplane:~$ kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+web-aula5-779c6f9566-4dxvs   1/1     Running   0          20s
+web-aula5-779c6f9566-8vm2t   1/1     Running   0          8m43s
+web-aula5-779c6f9566-9bzsk   1/1     Running   0          20s
+web-aula5-779c6f9566-rjxfx   1/1     Running   0          8m43s
+web-aula5-779c6f9566-t6lkn   1/1     Running   0          8m2s
+root@controlplane:~$ kubectl delete pod $(kubectl get pods -o jsonpath='{.items[0].metadata.name}')
+pod "web-aula5-779c6f9566-4dxvs" deleted from default namespace
+root@controlplane:~$ kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+web-aula5-779c6f9566-84tjs   1/1     Running   0          18s
+web-aula5-779c6f9566-8vm2t   1/1     Running   0          10m
+web-aula5-779c6f9566-9bzsk   1/1     Running   0          97s
+web-aula5-779c6f9566-rjxfx   1/1     Running   0          10m
+web-aula5-779c6f9566-t6lkn   1/1     Running   0          9m19s
